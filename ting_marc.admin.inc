@@ -231,6 +231,14 @@ function ting_marc_delete_item_confirm_submit($form, &$form_state) {
  */
 function ting_marc_types() {
   $ting_well_types = variable_get('ting_well_types', array());
+
+  // If we don't have any well types they might not have been fetched yet.
+  // TODO: Maybe it should be possible to update the well types on the form
+  // instead. Like it's done in ting module.
+  if (empty($ting_well_types)) {
+    $ting_well_types = _ting_fetch_well_types();
+  }
+
   $type_arr = drupal_map_assoc(array_keys($ting_well_types));
 
   array_walk($type_arr, function (&$item) {
