@@ -28,14 +28,14 @@
         dataType: 'json',
         type: 'POST',
         data: fields_obj,
-        success: function(data) {
-          $.each(data, function() {
-            $('.' + processing, container).each(function(index, value) {
+        success: function (data) {
+          $.each(data, function () {
+            $('.' + processing, container).each(function (index) {
               var field = $(this),
-                  _data = $(field).data('ting-marc'),
-                  data_field = data[index];
+                _data = $(field).data('ting-marc'),
+                data_field = data[index];
               if (data_field) {
-                if (typeof(data_field[_data]) == "undefined") {
+                if (typeof (data_field[_data]) === "undefined") {
                   field.addClass(nodata);
                 }
                 else {
