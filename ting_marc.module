@@ -431,11 +431,13 @@ function ting_marc_get_data($id, $field, $subfield) {
 
   // Default data loading: use core ting module's built-in funcionality to fetch
   // marc objects from the data well.
-  module_load_include('inc', 'ting', 'client');
-  $object = ting_get_object_marcxchange($id);
+  module_load_include('inc', 'opensearch', 'opensearch.client');
+  $object = opensearch_get_objects_marcxchange([$id]);
   if (empty($object)) {
     return NULL;
   }
+
+  $object = reset($object);
   $res = $object->getValue($field, $subfield);
   return $res;
 }
